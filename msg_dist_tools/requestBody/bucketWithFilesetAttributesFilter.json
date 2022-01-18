@@ -1,0 +1,42 @@
+{
+    "transport": {
+        "transportType": "AWS-SQS"
+    },
+    "query": {
+        "bool": {
+            "must": [
+                {
+                    "term": {
+                        "payload.FileStoreNotification.fileset.bucketName": "testbucket"
+                    }
+                },
+                {
+                    "nested": {
+                        "path": "payload.FileStoreNotification.fileset.attributes",
+                        "query": {
+                            "bool": {
+                                "must": [
+                                    {
+                                        "term": {
+                                            "payload.FileStoreNotification.fileset.attributes.name": "VENUE"
+                                        }
+                                    },
+                                    {
+                                        "term": {
+                                            "payload.FileStoreNotification.fileset.attributes.value": "caq"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+                    "term": {
+                        "payload.FileStoreNotification.fileset.status": "READY"
+                    }
+                }
+            ]
+        }
+    }
+}

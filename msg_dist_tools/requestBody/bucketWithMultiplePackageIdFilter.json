@@ -1,0 +1,37 @@
+{
+  "transport": {
+    "transportType": "AWS-SQS"
+  },
+  "query": {
+    "bool": {
+      "must": [
+          {
+          "term": {
+            "payload.FileStoreNotification.fileset.bucketName": "testbucket"
+          }
+        },
+        {
+            "bool": {
+                "should": [
+                    {
+                        "term": {
+                            "payload.FileStoreNotification.fileset.packageId": "testPackageId1"
+                        }
+                    },
+                    {
+                        "term": {
+                            "payload.FileStoreNotification.fileset.packageId": "testPackageId2"
+                        }   
+                    }
+                ]
+            }
+        },
+        {
+          "term": {
+            "payload.FileStoreNotification.fileset.status": "READY"
+          }
+        }
+      ]
+    }
+  }
+}

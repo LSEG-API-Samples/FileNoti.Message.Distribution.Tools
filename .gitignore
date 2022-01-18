@@ -1,0 +1,9 @@
+
+msg_dist_tools/metadata/
+msg_dist_tools/reports/
+msg_dist_tools/token.txt
+*.pyc
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/
+msg_dist_tools/.DS_Store
+.DS_Store
