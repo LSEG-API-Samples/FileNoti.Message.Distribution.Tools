@@ -13,12 +13,15 @@ import json
 import base64
 from Crypto.Cipher import AES
 import traceback
-import os
+import os, sys
 import time
+from loggingFileNoti import get_app_logger, get_error_logger
 
 REGION = 'us-east-1'
 METADATA_DIR_NAME = 'metadata'
 
+app_logger = get_app_logger("app_info")
+error_logger = get_error_logger("app_error")
 
 #==============================================
 def decrypt(key, source):
@@ -45,7 +48,7 @@ def processPayload(payloadText, subscriptionId, metadataFolder, callback, destin
     # ==============================================
     try:
         rMessage = json.loads(payloadText)
-        print('--------- Received message -----------')
+        app_logger.info('subscriptionId {}, --------- Received message -----------'.format(subscriptionId))
         distribution_seq_no = 0 if "distributionSeqNo" not in rMessage else rMessage["distributionSeqNo"]
         time_str = time.strftime("%Y%m%d-%H%M%S")
         with open("{}/{}_{}_{}_{}".format(metadataFolder, subscriptionId, time_str, distribution_seq_no, "metadata.json"), 'w') as f:
@@ -56,15 +59,15 @@ def processPayload(payloadText, subscriptionId, metadataFolder, callback, destin
         if 'payload' in rMessage:
             callback(rMessage, subscriptionId, destination_folder)
         else:
-            print("payload is not found")
-            print(json.dumps(rMessage))  # print(json.dumps(rMessage, indent=2))
-
-        print("\n")
+            app_logger.error("subscriptionId {}, skip process cause payload is not found from {}".format(subscriptionId, json.dumps(rMessage)))
+            error_logger.error("subscriptionId {}, skip process cause payload is not found from {}".format(subscriptionId, json.dumps(rMessage)))
 
     except Exception as err:
-        traceback.print_exc()
-        print(str(payloadText))
-        print(err)
+        error_message = "subscriptionId {}, skip process and could not process message {}, cause {}".format(subscriptionId, str(payloadText), err)
+        app_logger.error(error_message, exc_info=True)
+        error_logger.error(error_message, exc_info=True)
+    app_logger.info("\n")
+
 
 #==============================================
 def startPolling(accessID, secretKey, sessionToken, endpoint, cryptographyKey, subscriptionId, callback, destination_folder):
@@ -78,7 +81,7 @@ def startPolling(accessID, secretKey, sessionToken, endpoint, cryptographyKey, s
     )
 
     metadata_folder = "{}/{}".format(METADATA_DIR_NAME, subscriptionId)
-    print("create metadata folder {} if it does not exist".format(metadata_folder))
+    app_logger.info("subscriptionId {}, create metadata folder {} if it does not exist".format(subscriptionId, metadata_folder))
     try:
         os.mkdir(METADATA_DIR_NAME)
     except:
@@ -91,7 +94,7 @@ def startPolling(accessID, secretKey, sessionToken, endpoint, cryptographyKey, s
 
     sqs = session.client('sqs')
 
-    print('Polling messages from queue...')
+    app_logger.info('subscriptionId {}, Polling messages from queue '.format(subscriptionId))
     while 1:
         resp = sqs.receive_message(QueueUrl=endpoint, MaxNumberOfMessages=10, WaitTimeSeconds=10)
 

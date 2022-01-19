@@ -15,12 +15,12 @@
                 "should": [
                     {
                         "term": {
-                            "payload.FileStoreNotification.fileset.packageId": "testPackageId1"
+                            "payload.FileStoreNotification.fileset.packageId": "4000-04ea-7d282653-8e6d-810dda18956d"
                         }
                     },
                     {
                         "term": {
-                            "payload.FileStoreNotification.fileset.packageId": "testPackageId2"
+                            "payload.FileStoreNotification.fileset.packageId": "5000-04ea-7d282653-8e6d-810dda18956d"
                         }   
                     }
                 ]

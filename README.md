@@ -25,6 +25,7 @@
       ```
 
 2. **Create a new subscription and specify input json file**
+      Syntax
       ```
       python fileNotiMessages.py -c -i requestBody/<json file>
       ```
@@ -35,6 +36,7 @@
       
 
 3. **Poll message queue from existing subscription and specify destination folder**
+      Syntax
       ```
       python fileNotiMessages.py -p -s <subscriptionId> -d <destination folder>
       ```
@@ -49,6 +51,7 @@
       ```
 
 5. **Get specific subscription**
+      Syntax
       ```
       python fileNotiMessages.py -g -s <subscriptionId>
       ```
@@ -58,6 +61,7 @@
       ```
 
 6. **Update user subscription filter**
+      Syntax
       ```
       python fileNotiMessages.py -m -s <subscriptionId> -i requestBody/<json file>
       ```
@@ -73,6 +77,7 @@
       ```
 
 8. **Delete specific subscription**
+      Syntax
       ```
       python fileNotiMessages.py -u -s <subscriptionId>
       ```
@@ -82,6 +87,7 @@
       ```
 
 9. **Get NumberOfAvailableMessages in sqs queue**
+      Syntax
       ```
       python fileNotiMessages.py --q -s <subscriptionId>
       ```
@@ -89,5 +95,5 @@
       ```
       python fileNotiMessages.py --q -s xxxx-xxxx-xxxx-xxxx
       ```
-
+	        
 

@@ -2,3 +2,4 @@ requests===2.26.0
 boto3===1.18.25
 pycrypto===2.6.1
 pycryptodome===3.10.1
+halo===0.0.31

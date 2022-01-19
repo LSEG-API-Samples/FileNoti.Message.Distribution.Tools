@@ -12,7 +12,7 @@
                 },
                 {
                     "term": {
-                        "payload.FileStoreNotification.fileset.packageId": "testPackageId"
+                        "payload.FileStoreNotification.fileset.packageId": "4000-04ea-7d282653-8e6d-810dda18956d"
                     }
                 },
                 {
