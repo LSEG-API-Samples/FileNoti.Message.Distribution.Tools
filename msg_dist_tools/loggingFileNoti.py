@@ -1,6 +1,9 @@
 import logging
 import os, sys
 from pathlib import Path
+import rollingFileHandler as rollingFileHandler
+
+MAX_ROTATE_FILE_SIZE_BYTES = 5 * 1024 * 1024
 
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 
@@ -8,7 +11,7 @@ app_loggers = {}
 error_loggers = {}
 
 
-def setup_logger(name, log_file, level=logging.INFO, log_sys_type=sys.stdout):
+def setup_logger(name, log_file, level=logging.INFO, log_sys_type=sys.stdout, is_file_handler=False, is_rotate_file_handler=True):
     """To setup as many loggers as you want"""
 
     log_path = Path(log_file)
@@ -17,18 +20,24 @@ def setup_logger(name, log_file, level=logging.INFO, log_sys_type=sys.stdout):
     if not os.path.exists(log_dir):
         os.makedirs(log_dir)
 
-    handler = logging.FileHandler(log_file)
-    handler.setFormatter(formatter)
+    logger = logging.getLogger(name)
+    logger.setLevel(level)
 
     if log_sys_type is not None:
         sout_handler = logging.StreamHandler(log_sys_type)
         sout_handler.setFormatter(formatter)
-
-    logger = logging.getLogger(name)
-    logger.setLevel(level)
-    logger.addHandler(handler)
-    if log_sys_type is not None:
         logger.addHandler(sout_handler)
+
+    if is_file_handler:
+        handler = logging.FileHandler(log_file)
+        handler.setFormatter(formatter)
+        logger.addHandler(handler)
+
+    if is_rotate_file_handler:
+        rolling_file_handler = rollingFileHandler.RollingFileHandler(log_file, mode='a', maxBytes=MAX_ROTATE_FILE_SIZE_BYTES,
+                                         backupCount=-1, encoding=None, delay=0)
+        rolling_file_handler.setFormatter(formatter)
+        logger.addHandler(rolling_file_handler)
 
     return logger
 

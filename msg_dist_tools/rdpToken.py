@@ -22,8 +22,8 @@ app_logger = get_app_logger("app_info")
 error_logger = get_error_logger("app_error")
 
 # User Credentials
-USERNAME  = "---YOUR PROVIDED RDP MACHINE ID---"
-PASSWORD  = "---YOUR PASSWORD---"
+USERNAME = "---YOUR PROVIDED RDP MACHINE ID---"
+PASSWORD = "---YOUR PASSWORD---"
 CLIENT_ID = "---YOUR GENERATED CLIENT ID---"
 
 # Application Constants
@@ -50,7 +50,7 @@ def _loadCredentialsFromFile():
         PASSWORD = config['RDP']['password']
         CLIENT_ID = config['RDP']['clientId']
 
-        print("Read credentials from file")
+        app_logger.debug("Read credentials from file")
     except Exception as e:
         # ignore if no creds file
         app_logger.error(e, exc_info=True)
@@ -81,7 +81,7 @@ def _requestNewToken(refreshToken):
             "grant_type": "refresh_token",
         }
 
-    app_logger.info("{}, {}, {}".format(str(tData), CLIENT_ID, CLIENT_SECRET))
+    app_logger.debug("{}, {}, {}".format(str(tData), CLIENT_ID, CLIENT_SECRET))
 
     # Make a REST call to get latest access token
     response = requests.post(
@@ -143,7 +143,7 @@ def _loadToken():
         tf = open(TOKEN_FILE, "r+")
         tknObject = json.load(tf)
         tf.close()
-        app_logger.info("Existing token read from: " + TOKEN_FILE)
+        app_logger.debug("Existing token read from: " + TOKEN_FILE)
     except Exception:
         pass
 
@@ -218,7 +218,6 @@ def getToken():
     _saveToken(tknObject)
     # return access token
     return tknObject["access_token"]
-
 
 
 #==============================================
