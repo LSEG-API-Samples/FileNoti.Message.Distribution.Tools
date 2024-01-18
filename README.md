@@ -338,6 +338,13 @@ python fileNotiMessages.py -u
 
 ## <a id="troubleshooting"></a>Troubleshooting
 
+**Error**: "'pip' is not recognized as an internal or external command, operable program or batch file." when run a "python3 -m pip install" command.
+
+**Answer**: Your Python installation is not completed. You need to add the path of the pip installation (**{Python installation folder}\Scripts** folder by default) to your PATH system variable. For more detail, please check the following resources:
+- https://stackoverflow.com/questions/23708898/pip-is-not-recognized-as-an-internal-or-external-command
+- https://builtin.com/software-engineering-perspectives/pip-command-not-found
+- https://discuss.python.org/t/pip-not-working/30102
+
 **Error**: "Failed to get access token 400 - {"error":"access_denied"  ,"error_description":"Invalid username or password." }" when running the tool.
 
 **Answer**: This error message means your RDP username or password information in the **msg_dist_tools/credentials.ini** is invalid. Please verify your RDP username (user-id/machine-id) and password.
