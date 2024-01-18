@@ -20,7 +20,7 @@ Please contact your LSEG representative to help you with the RDP account and ser
 
 ### Internet Access
 
-This demonstration connects to RDP on AWS via a public internet.
+The tool needs to download the required libraries from the https://pypi.org/ Python package repository website. The CFS file is also available on AWS Cloud, so you need internat access to use the tool.
 
 ### Python
 
