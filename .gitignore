@@ -7,3 +7,6 @@ msg_dist_tools/token.txt
 .idea/
 msg_dist_tools/.DS_Store
 .DS_Store
+msg_dist_tools/cfs_download
+msg_dist_tools/current_user.json
+msg_dist_tools/error_mapping.csv
