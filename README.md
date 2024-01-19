@@ -14,9 +14,14 @@ There is some prerequisite, dependencies, and libraries that the project is need
 
 ### Access to the RDP with the your desire CFS file permission
 
-This project uses RDP access credentials with the CFS file permission.
+This project uses RDP access credentials with the CFS file permission. You need both RDP User-ID (email base) and Machine-ID (GE-A-XXXXX) user types.
 
-Please contact your LSEG representative to help you with the RDP account and services.
+- **User-ID**: Identifier for user allowing access to contracted content and APIs on the API Playground page (https://apidocs.refinitiv.com/Apps/ApiDocs) or Bulk UI via Workspace/Eikon Desktop. It normally is email address of user (example: sample@lseg.com).
+- **Machine ID**:  Identifier for machine allowing access and run this tool or any automate applications. It normally is a username with "GE-A-XXXXXXXX" format.
+
+Please see more detail about how to setup your RDP User-ID and Machine-ID from the [Getting Started with Refinitiv Data Platform](https://developers.lseg.com/en/article-catalog/article/getting-start-with-refinitiv-data-platform) article. 
+
+You can contact your LSEG representative to help you with the RDP account and services.
 
 ### Internet Access
 
@@ -59,6 +64,7 @@ Please open the [https://github.com/LSEG-API-Samples/FileNoti.Message.Distributi
       python --version
       ```   
 4. Run command to install python libraries
+      
       // For python3.7 
       ```bash
       python3 -m pip install -r python37_libs.txt
@@ -74,13 +80,14 @@ Please open the [https://github.com/LSEG-API-Samples/FileNoti.Message.Distributi
       python -m pip uninstall pycrypto
       python -m pip install -r python37_libs.txt
       ```
-6. **Go to folder name msg_dist_tools** and open file **credentials.ini** and specify your RDP credential information as follows (If you don't know information please contact your LSEG representative)
+6. **Go to folder name msg_dist_tools** and open file **credentials.ini** and specify your RDP **Machine-ID credential type** information as follows (If you don't know information please contact your LSEG representative)
       ```ini
       [RDP]
-      username = <RDP user-id/machine-id>
-      password = <RDP password>
+      username = <RDP Machine-ID GE-A-XXXXXXXX>
+      password = <RDP Machine-ID password>
       clientId = <RDP App Key>
       ```
+      **Caution**: Please **do not** set your RDP User-ID (email) credential type or the same user to access Workspace here.
 7. Run Program please check Tool Description section
 8. Messages will be stored under metadata/<subscriptionId> folder
 9. FileNoti file will be downloaded into your destination folder
@@ -186,7 +193,7 @@ Result:
 log_path log\app.log, log_dir log
 log_path log\error.log, log_dir log
 Program is started
-\ 2024-01-18 18:04:20,861 INFO Successfully get current user: {user}
+\ 2024-01-18 18:04:20,861 INFO Successfully get current user: {GE-A-XXXXXXXX}
 2024-01-18 18:04:20,861 INFO input parameter = {'get': False, 'create': True, 'poll': False, 'modify': False, 'delete': False, 'subscriptionId': None, 'input': 'requestBody/bucketAndPackageIdFilter.json', 'destinationFolder': None, 'queue': False, 'recovery': False}
 2024-01-18 18:04:20,861 INFO
 
@@ -363,5 +370,7 @@ python fileNotiMessages.py -u
 * Refinitiv Data Platform APIs page: https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis
 * Refinitiv Developer Community: https://developers.lseg.com/ website.
 * Refinitiv Data Platform APIs Playground page: https://apidocs.refinitiv.com/Apps/ApiDocs
+* Getting Started with Refinitiv Data Platform: https://developers.lseg.com/en/article-catalog/article/getting-start-with-refinitiv-data-platform
+* A Step-By-Step Workflow Guide for RDP Client File Store (CFS) API: https://developers.lseg.com/en/article-catalog/article/a-step-by-step-workflow-guide-for-rdp-client-file-store--cfs--ap
 
 For any questions related to Refinitiv Data Platform APIs, please use the Developers Community Q&A page: https://community.developers.refinitiv.com/ website.
