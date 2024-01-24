@@ -29,7 +29,9 @@ The tool needs to download the required libraries from the https://pypi.org/ Pyt
 
 ### Python
 
-This project uses [Python](https://www.python.org/) programming language and runtime.
+This project uses [Python](https://www.python.org/) programming language and runtime. 
+
+The Python [Anaconda](https://www.anaconda.com/distribution/) or [MiniConda](https://docs.conda.io/en/latest/miniconda.html) distribution/package manager is also supported.
 
 ## <a id="how_to_run"></a>How to run the application
 
@@ -54,7 +56,7 @@ Please open the [https://github.com/LSEG-API-Samples/FileNoti.Message.Distributi
 
 ![figure-1](images/01_download.png "how to download project manually")
 
-## <a id="tool_setup"></a>Tool Setup
+## <a id="tool_setup"></a>Tool Setup with Python
 
 1. If you didn't have python3.7 or python 3.9 yet please install it via https://www.python.org/downloads/ website
 2. You can follow https://wiki.python.org/moin/BeginnersGuide/Download and https://realpython.com/installing-python/ websites for the installation guides.
@@ -80,6 +82,34 @@ Please open the [https://github.com/LSEG-API-Samples/FileNoti.Message.Distributi
       python -m pip uninstall pycrypto
       python -m pip install -r python37_libs.txt
       ```
+6. **Go to folder name msg_dist_tools** and open file **credentials.ini** and specify your RDP **Machine-ID credential type** information as follows (If you don't know information please contact your LSEG representative)
+      ```ini
+      [RDP]
+      username = <RDP Machine-ID GE-A-XXXXXXXX>
+      password = <RDP Machine-ID password>
+      clientId = <RDP App Key>
+      ```
+      **Caution**: Please **do not** set your RDP User-ID (email) credential type or the same user to access Workspace here.
+7. Run Program please check Tool Description section
+8. Messages will be stored under metadata/<subscriptionId> folder
+9. FileNoti file will be downloaded into your destination folder
+
+## <a id="tool_setup"></a>Tool Setup with Anaconda/MiniConda
+
+1. Download Python [Anaconda](https://www.anaconda.com/distribution/) or [MiniConda](https://docs.conda.io/en/latest/miniconda.html) distribution/package manager and install it in your local machine.
+2. Open Anaconda Prompt and go to the project's folder.
+3. Run the following command in the Anaconda Prompt application to create a Conda environment named *CFS_FileNoti* for the project.
+    ``` bash
+    (base) $>conda create --name CFS_FileNoti python=3.9
+    ```
+4. Once the environment is created, activate a Conda *CFS_FileNoti* environment with this command in Anaconda Prompt.
+    ``` bash
+    (base) $>conda activate CFS_FileNoti
+    ```
+5. Run the following command to the dependencies in the *CFS_FileNoti* environment 
+    ``` bash
+    (CFS_FileNoti) $>pip install -r python39_libs.txt
+    ```
 6. **Go to folder name msg_dist_tools** and open file **credentials.ini** and specify your RDP **Machine-ID credential type** information as follows (If you don't know information please contact your LSEG representative)
       ```ini
       [RDP]
