@@ -208,6 +208,18 @@ Example: *bucketAndPackageIdFilter.json*
     }
 }
 ```
+The examples of Bucket-names and Package IDs are as follows:
+
+|              Content             |                  Bucket Name                 |              Example of Package ID             |
+|:--------------------------------:|:-------------------------------------------:|:---------------------------------------------:|
+| Financial Markets Reference Data | bulk-FMRD                                    | 4d48-d7ff-edcc3d38-8243-a4f7517962b8           |
+| Symbology                        | bulk-Symbology                               | 4c80-73a0-fcef949b-bfde-2b9b8117cfb0           |
+| ESG                              | bulk-ESG                                     | 4288-ebb6-93372235-acb2-89882a826af1           |
+| ESG - Point in Time              | bulk-ESG                                     | 4173-aec7-8a0b0ac9-96f9-48e83ddbd2ad           |
+| Tick History                     | TICKHISTORY_VBD_NO_EMBARGO                   | 4c01-ab9e-db594a31-a8f5-5b7852ec4638           |
+| Green Revenue                    | bulk-GreenRevenue                            | Summary: 4e94-6d63-fea034dc-90e2-de33895bd4e9  |
+| Green Revenue                    | bulk-GreenRevenue                            | Standard: 4316-d43b-81c40763-8e6a-0dbec8162ab1 |
+| Starmine                         | STARMINE_PREDICTIVE_ANALYTICS_SMARTECON_LIVE | 40d4-1404-58533484-afe8-718650a4e0d4           |   
 
 Please contact your LSEG representative about your Bucket-name and Package ID.
 
